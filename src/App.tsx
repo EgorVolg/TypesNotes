@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ITodo } from "./types/data";
 import { TodoList } from "./components/TodoList";
 
 export const App: React.FC = () => {
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState<ITodo[]>([]);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const addTodo = () => {
     if (value) {
@@ -24,10 +31,26 @@ export const App: React.FC = () => {
     setValue(e.target.value);
   };
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter") {
+      addTodo();
+    }
+  };
+
+
+
+
+
   return (
     <div>
       <div>
-        <input type="text" value={value} onChange={handlerChange} />
+        <input
+          type="text"
+          value={value}
+          onChange={handlerChange}
+          onKeyDown={handleKeyDown}
+          ref={inputRef}
+        />
         <button onClick={addTodo}>Add</button>
       </div>
       <TodoList items={todos} />

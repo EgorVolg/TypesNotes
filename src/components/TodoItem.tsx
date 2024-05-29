@@ -2,12 +2,12 @@ import { ITodo } from "../types/data";
 
 interface ITodoItem extends ITodo{}
 
-export const TodoItem: React.FC<ITodoItem> = (props) => {
-  const { id, title, isCompleted } = props;
+export const TodoItem: React.FC<{todo:ITodo}> = ({todo}) => {
+//   const { id, title, isCompleted } = props;
   return (
     <div>
-      <input type="checkbox" checked={isCompleted} />
-      {title}
+      <input type="checkbox" checked={todo.isCompleted} />
+      {todo.title}
       <button>X</button>
     </div>
   );
