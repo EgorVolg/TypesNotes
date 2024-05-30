@@ -7,19 +7,16 @@ interface ITodoList {
   toggleTodo: (id: number) => void;
 }
 
-export const TodoList: React.FC<ITodoList> = ({
-  items,
-  removeTodo,
-  toggleTodo,
-}) => {
+export const TodoList: React.FC<ITodoList> = (props) => {
+  const { items, removeTodo, toggleTodo } = props;
   return (
     <div>
       {items.map((todo) => (
         <TodoItem
           key={todo.id}
-          todo={todo}
           removeTodo={removeTodo}
           toggleTodo={toggleTodo}
+           {...todo}
         />
       ))}
     </div>

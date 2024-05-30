@@ -5,16 +5,16 @@ interface ITodoItem extends ITodo {
   toggleTodo: (id: number) => void;
 }
 
-export const TodoItem: React.FC<{ todo: ITodoItem }> = ({ todo }) => {
+export const TodoItem: React.FC<ITodoItem> = (props) => {
   return (
     <div>
       <input
         type="checkbox"
-        checked={todo.isCompleted}
-        onChange={() => todo.toggleTodo(todo.id)}
+        checked={props.isCompleted}
+        onChange={() => props.toggleTodo(props.id)}
       />
-      {todo.title}
-      <button onClick={() => todo.removeTodo(todo.id)}>X</button>
+      {props.title}
+      <button onClick={() => props.removeTodo(props.id)}>X</button>
     </div>
   );
 };
