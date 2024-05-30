@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ITodo } from "./types/data";
+import { TodoType } from "./types/data";
 import { TodoList } from "./components/TodoList";
 
 export const App: React.FC = () => {
   const [value, setValue] = useState("");
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
